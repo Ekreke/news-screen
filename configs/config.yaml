@@ -1,0 +1,26 @@
+server:
+  http:
+    addr: 0.0.0.0:8010
+    timeout: 10s
+  grpc:
+    addr: 0.0.0.0:8011
+    timeout: 10s
+data:
+  database:
+    driver: mysql
+    host: "${MYSQL_HOST:192.168.40.50}"
+    port: "${MYSQL_PORT:3306}"
+    username: "${MYSQL_USER:root}"
+    password: "${MYSQL_PASSWORD:pwd}"
+    database: "${MYSQL_DATABASE:db}"
+
+logging:
+  level: Debug
+  file:
+    path: "/home/ubuntu/app/logs/news-screen/"
+    name: "news-screen.log"
+    maxSize: 10 # 日志的最大大小（MB）
+    maxBackups: 5 # 日志的最大保存数量
+    maxAge: 30 # 日志文件存储最大天数
+    compress: false # 是否执行压缩
+
