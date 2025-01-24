@@ -1,7 +1,6 @@
 #!/bin/sh
 
-source utils.sh
-
+. ./utils.sh 
 
 # TODO: progress bar
 cat << "EOF"

@@ -1,26 +1,21 @@
 #!/bin/bash
 
 print_success() {
-    # shellcheck disable=SC2039
-    echo -e "\033[32m✔️ $1\033[0m"
+    printf "\033[32m✔️ %s\033[0m\n" "$1"
 }
 
 print_error() {
-    # shellcheck disable=SC2039
-    echo -e "\033[31m❌ $1\033[0m"
+    printf "\033[31m❌ %s\033[0m\n" "$1"
 }
 
 print_prompt() {
-    # shellcheck disable=SC2039
-    echo -e "\033[31m $1\033[0m"
+    printf "\033[31m %s\033[0m\n" "$1"
 }
 
 print_warning() {
-    # shellcheck disable=SC2039
-    echo -e "\033[33m⚠️  $1\033[0m"
+    printf "\033[33m⚠️ %s\033[0m\n" "$1"
 }
 
 print_notice() {
-    # shellcheck disable=SC2039
-    echo -e "\033[35m📢 $1\033[0m"
+    printf "\033[35m📢 %s\033[0m\n" "$1"
 }
