@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Source utility functions
-source ../utils.sh
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. "${SCRIPT_DIR}/../utils.sh"
 
 print_notice "Starting DailyHot API deployment..."
 
@@ -21,7 +23,6 @@ if docker ps -a | grep -q "imsyy/dailyhot-api"; then
 fi
 
 # Run the container
-# Run the container
 print_notice "Starting DailyHot API container..."
 if ! docker_run_output=$(docker run --restart always -p 6688:6688 -d imsyy/dailyhot-api:latest 2>&1); then
     print_error "Failed to start the container"
@@ -29,5 +30,12 @@ if ! docker_run_output=$(docker run --restart always -p 6688:6688 -d imsyy/daily
     exit 1
 fi
 
-print_success "DailyHot API container is now running"
-print_notice "The API is accessible at http://localhost:6688"
+# Check container if running
+if docker ps | grep -q "imsyy/dailyhot-api"; then
+    print_success "DailyHot API container is now running"
+    print_notice "The API is accessible at http://localhost:6688"
+    exit 0  # 显式指定成功退出
+else
+    print_error "Container started but not running"
+    exit 1
+fi
