@@ -34,7 +34,8 @@ fi
 
 # Deploy news-screen service
 print_notice "Building and deploying news-screen service..."
-# Build Docker image
+# Build Docker image from project root
+cd "${SCRIPT_DIR}/.." || exit 1
 if ! docker_build_output=$(docker build -t news-screen . 2>&1); then
     print_error "Failed to build news-screen image"
     print_error "Docker Build Error: $docker_build_output"
